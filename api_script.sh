@@ -9,10 +9,11 @@ SECURITY_PASS=$ALLURE_PASS
 
 # set -o xtrace
 print_usage() {
-    echo "Available commands: upload, clean"
+    echo "Available commands: upload, delete_project, clean_results"
     echo "Usage:"
-    echo "  $0 upload [allure-results-folder]"
-    echo "  $0 clean"
+    echo "  $0 upload [project_id] [allure-results-folder]"
+    echo "  $0 delete_project [project_id]"
+    echo "  $0 clean_results [project_id]"
 }
 
 login() {
