@@ -1,4 +1,6 @@
 # GitHub action API for Allure Docker Service
+[![GitHub release badge](https://badgen.net/github/release/dimashabalin/allure-docker-service-api-action)](https://github.com/dimashabalin/allure-docker-service-api-action/releases/latest)
+
 Create&Upload&CleanUp for [fescobar/allure-docker-service](https://github.com/fescobar/allure-docker-service).
 
 ## Inputs
@@ -8,7 +10,7 @@ Create&Upload&CleanUp for [fescobar/allure-docker-service](https://github.com/fe
 1. `clean_results` - login -> clean results
 1. `delete_project` - login -> delete project
 
-Defaults - `upload`
+Default - `upload`
 
 ______
 
