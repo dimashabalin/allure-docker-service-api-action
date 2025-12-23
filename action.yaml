@@ -1,0 +1,28 @@
+name: "Api for Allure Docker Service"
+description: "Upload & Cleanup allure results to Allure Docker Service"
+author: "dimashabalin"
+branding:
+  icon: 'server'  
+  color: 'green'
+
+inputs:
+  command:
+    description: "Command to execute: upload, clean_results or delete_project"
+    required: false
+    default: 'upload'
+  project_id:
+    description: "Project id: generally branch name"
+    required: false
+    default: 'unknown'
+  allure_results:
+    description: "Allure results dir"
+    required: false
+    default: 'allure-results'
+
+runs:
+  using: "composite"
+  steps:
+    - run: chmod +x $GITHUB_ACTION_PATH/api_script.sh
+      shell: bash
+    - run: $GITHUB_ACTION_PATH/api_script.sh ${{ inputs.command }} ${{ inputs.project_id }} ${{ inputs.allure_results }}
+      shell: bash
