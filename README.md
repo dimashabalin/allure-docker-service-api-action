@@ -50,8 +50,8 @@ jobs:
 
     env:
       ALLURE_SERVER_URL: ${{ secrets.ALLURE_SERVER_URL }}
-      ALLURE_SERVER_USER: ${{ secrets.ALLURE_SERVER_USER }}
-      ALLURE_SERVER_PASSWORD: ${{ secrets.ALLURE_SERVER_PASSWORD }}
+      ALLURE_SERVER_USER: ${{ secrets.ALLURE_USER }}
+      ALLURE_SERVER_PASSWORD: ${{ secrets.ALLURE_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v2
