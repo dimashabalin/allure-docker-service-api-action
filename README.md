@@ -32,8 +32,8 @@ ______
 ## Secrets
 Server url and Authorization are **required** and must be specified using these ENV vars:
 - `ALLURE_SERVER_URL`
-- `ALLURE_SERVER_USER`
-- `ALLURE_SERVER_PASSWORD`
+- `ALLURE_USER`
+- `ALLURE_PASSWORD`
 #### [How to set secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 
 ## Misc
