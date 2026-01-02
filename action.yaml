@@ -22,7 +22,18 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: chmod +x $GITHUB_ACTION_PATH/api_script.sh
+    - name: "Upload Results"
       shell: bash
-    - run: $GITHUB_ACTION_PATH/api_script.sh ${{ inputs.command }} ${{ inputs.project_id }} ${{ inputs.allure_results }}
-      shell: bash
+      run: |
+        chmod +x $GITHUB_ACTION_PATH/api_script.sh
+        RESULT=$(
+          $GITHUB_ACTION_PATH/api_script.sh ${{ inputs.command }} ${{ inputs.project_id }} ${{ inputs.allure_results }} \
+          | tee /dev/stdout \
+          | tail -n 1
+        )
+        echo "::notice title=Allure API ${{ inputs.command }}::"
+        {
+          echo "### Results:"
+          echo ""
+          echo "[Open report](${RESULT})"
+        } >> "$GITHUB_STEP_SUMMARY"
