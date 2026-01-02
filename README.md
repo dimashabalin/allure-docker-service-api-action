@@ -33,7 +33,7 @@ ______
 Server url and Authorization are **required** and must be specified using these ENV vars:
 - `ALLURE_SERVER_URL`
 - `ALLURE_USER`
-- `ALLURE_PASSWORD`
+- `ALLURE_PASS`
 #### [How to set secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 
 ## Misc
@@ -51,7 +51,7 @@ jobs:
     env:
       ALLURE_SERVER_URL: ${{ secrets.ALLURE_SERVER_URL }}
       ALLURE_SERVER_USER: ${{ secrets.ALLURE_USER }}
-      ALLURE_SERVER_PASSWORD: ${{ secrets.ALLURE_PASSWORD }}
+      ALLURE_SERVER_PASSWORD: ${{ secrets.ALLURE_PASS }}
 
     steps:
       - uses: actions/checkout@v2
