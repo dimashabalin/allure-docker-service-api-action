@@ -7,6 +7,9 @@ ALLURE_SERVER=$ALLURE_SERVER_URL
 SECURITY_USER=$ALLURE_USER
 SECURITY_PASS=$ALLURE_PASS
 
+# Escape unsupported characters in PROJECT_ID
+PROJECT_ID="${PROJECT_ID//[^a-zA-Z0-9]/-}"
+
 # set -o xtrace
 print_usage() {
     echo "Available commands: upload, delete_project, clean_results"
