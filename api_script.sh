@@ -69,7 +69,7 @@ upload_results() {
 
 delete_project() {
     echo "------------------DELETE-PROJECT------------------"
-    curl -X GET "$ALLURE_SERVER/allure-api/projects/$PROJECT_ID" \
+    curl -X DELETE "$ALLURE_SERVER/allure-api/projects/$PROJECT_ID" \
         -H "X-CSRF-TOKEN: $CRSF_ACCESS_TOKEN_VALUE" \
         -b cookiesFile -k
     echo "Success"
