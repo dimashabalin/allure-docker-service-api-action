@@ -28,7 +28,7 @@ runs:
         chmod +x $GITHUB_ACTION_PATH/api_script.sh
         RESULT=$(
           $GITHUB_ACTION_PATH/api_script.sh ${{ inputs.command }} ${{ inputs.project_id }} ${{ inputs.allure_results }} \
-          | tee /dev/stdout \
+          | tee >(cat >&2) \
           | tail -n 1
         )
         echo "::notice title=Allure API ${{ inputs.command }}::"
