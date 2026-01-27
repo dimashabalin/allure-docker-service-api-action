@@ -64,7 +64,7 @@ upload_results() {
     echo $RESPONSE
     echo $(grep -o '"report_url":"[^"]*' <<< "$RESPONSE" | grep -o '[^"]*$')
     echo "There is some flackiness in generating link. Temporarily use generic address for the project page and latest report"
-    echo "${ALLURE_SERVER}/allure-ui/allure-docker-service-ui/projects/${PROJECT_ID}/reports/latest/index.html"
+    echo "${ALLURE_SERVER}/allure-ui/allure-docker-service-ui/projects/${PROJECT_ID}/reports/latest"
 }
 
 delete_project() {
