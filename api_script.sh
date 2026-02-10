@@ -48,7 +48,7 @@ upload_results() {
     echo "Success"
 
     echo "------------------UPLOAD-RESULTS------------------"
-    curl -vvv -X POST "$ALLURE_SERVER/allure-api/send-results?project_id=$PROJECT_ID&force_project_creation=true" \
+    curl -X POST "$ALLURE_SERVER/allure-api/send-results?project_id=$PROJECT_ID&force_project_creation=true" \
         -H 'Content-Type: multipart/form-data' \
         -H "X-CSRF-TOKEN: $CRSF_ACCESS_TOKEN_VALUE" \
         -b cookiesFile $FILES -k
