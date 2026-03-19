@@ -31,9 +31,11 @@ runs:
           | tee >(cat >&2) \
           | tail -n 1
         )
-        echo "::notice title=Allure API ${{ inputs.command }}::"
-        {
-          echo "### Results:"
-          echo ""
-          echo "[Open report](${RESULT})"
-        } >> "$GITHUB_STEP_SUMMARY"
+        if [[ "${{ inputs.command }}" == "generate_report" || "${{ inputs.command }}" == "upload" ]]; then
+          echo "::notice title=Allure API ${{ inputs.command }}::"
+          {
+            echo "### Results:"
+            echo ""
+            echo "[Open report](${RESULT})"
+          } >> "$GITHUB_STEP_SUMMARY"
+        fi
