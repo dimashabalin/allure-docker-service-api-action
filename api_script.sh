@@ -12,11 +12,13 @@ PROJECT_ID="${PROJECT_ID//[^a-zA-Z0-9]/-}"
 
 # set -o xtrace
 print_usage() {
-    echo "Available commands: upload, delete_project, clean_results"
+    echo "Available commands: upload_only, delete_project, clean_results, upload_generate, generate_report"
     echo "Usage:"
-    echo "  $0 upload [project_id] [allure-results-folder]"
+    echo "  $0 upload_only [project_id] [allure-results-folder]"
     echo "  $0 delete_project [project_id]"
     echo "  $0 clean_results [project_id]"
+    echo "  $0 upload_generate [project_id] [allure-results-folder]"
+    echo "  $0 generate_report [project_id]"
 }
 
 login() {
@@ -53,7 +55,9 @@ upload_results() {
         -H "X-CSRF-TOKEN: $CRSF_ACCESS_TOKEN_VALUE" \
         -b cookiesFile $FILES -k
     echo "Success"
+}
 
+generate_report() {
     echo "------------------GENERATE-REPORT------------------"
     EXECUTION_NAME='GitHub-Actions'
     EXECUTION_FROM="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
@@ -83,14 +87,23 @@ clean_results() {
     echo "Success"
 }
 
-if [ "$COMMAND" == "upload" ]; then
+if [ "$COMMAND" == "upload_only" ]; then
+    login
+    upload_results
+
+elif [ "$COMMAND" == "upload_generate" ]; then
     login
     clean_results
     upload_results
+    generate_report
 
 elif [ "$COMMAND" == "delete_project" ]; then
     login
     delete_project
+
+elif [ "$COMMAND" == "generate_report" ]; then
+    login
+    generate_report
 
 elif [ "$COMMAND" == "clean_results" ]; then
     login
@@ -99,5 +112,10 @@ elif [ "$COMMAND" == "clean_results" ]; then
 else
     echo "Error: Unknown command '$COMMAND'"
     print_usage
-    exit 1
+    echo "Running default flow for backwards compatibility"
+    login
+    clean_results
+    upload_results
+    generate_report
+    # exit 1
 fi

@@ -6,11 +6,13 @@ Create&Upload&CleanUp for [fescobar/allure-docker-service](https://github.com/fe
 ## Inputs
 
 #### `command`
-1. `upload` - login -> create project if needed -> clean & upload results -> generates report
 1. `clean_results` - login -> clean results
+1. `upload_only` - login -> create poject if needed -> upload results
+1. `generate_report` - login -> generate report
+1. `upload_generate` - login -> create project if needed -> clean & upload results -> generates report
 1. `delete_project` - login -> delete project
 
-Default - `upload`
+Default - `upload_generate`
 
 ______
 
@@ -58,5 +60,5 @@ jobs:
 
       - uses: dimashabalin/allure-docker-service-api-action@v1
         with:
-          allure_results: upload
+          command: upload
 ```
