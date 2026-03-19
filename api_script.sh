@@ -66,9 +66,13 @@ generate_report() {
 
     RESPONSE=$(curl -X GET "$GENERATE_URL" -H "X-CSRF-TOKEN: $CRSF_ACCESS_TOKEN_VALUE" -b cookiesFile)
     echo $RESPONSE
-    # echo "There is some flackiness in generating link. Temporarily use generic address for the project page and latest report"
-    # echo "${ALLURE_SERVER}/allure-ui/allure-docker-service-ui/projects/${PROJECT_ID}/reports/latest"
-    echo $(grep -o '"report_url":"[^"]*' <<< "$RESPONSE" | grep -o '[^"]*$')
+
+    REPORT_URL=$(grep -o '"report_url":"[^"]*' <<< "$RESPONSE" | grep -o '[^"]*$')
+    if [ -z "$REPORT_URL" ]; then
+        echo "There is some flackiness in generating link. Temporarily use generic address for the project page and latest report"
+        REPORT_URL="${ALLURE_SERVER}/allure-ui/allure-docker-service-ui/projects/${PROJECT_ID}/reports/latest"
+    fi
+    echo "$REPORT_URL"
 }
 
 delete_project() {
