@@ -116,10 +116,5 @@ elif [ "$COMMAND" == "clean_results" ]; then
 else
     echo "Error: Unknown command '$COMMAND'"
     print_usage
-    echo "Running default flow for backwards compatibility"
-    login
-    clean_results
-    upload_results
-    generate_report
-    # exit 1
+    exit 1
 fi

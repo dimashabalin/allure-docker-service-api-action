@@ -60,5 +60,5 @@ jobs:
 
       - uses: dimashabalin/allure-docker-service-api-action@v1
         with:
-          command: upload
+          command: upload_generate
 ```

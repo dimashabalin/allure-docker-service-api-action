@@ -7,9 +7,9 @@ branding:
 
 inputs:
   command:
-    description: "Command to execute: upload, clean_results or delete_project"
+    description: "Command to execute: upload_only, delete_project, clean_results, upload_generate, generate_report"
     required: false
-    default: 'upload'
+    default: 'upload_generate'
   project_id:
     description: "Project id: generally branch name"
     required: false
@@ -31,7 +31,7 @@ runs:
           | tee >(cat >&2) \
           | tail -n 1
         )
-        if [[ "${{ inputs.command }}" == "generate_report" || "${{ inputs.command }}" == "upload" ]]; then
+        if [[ "${{ inputs.command }}" == "generate_report" || "${{ inputs.command }}" == "upload_generate" ]]; then
           echo "::notice title=Allure API ${{ inputs.command }}::"
           {
             echo "### Results:"
